@@ -1,1 +1,15 @@
-ECHO is on.
+.nav-link {
+  @apply text-white hover:text-[#DB0000] transition-colors duration-200 font-medium;
+}
+
+.nav-link-active {
+  @apply text-[#DB0000];
+}
+
+.nav-button {
+  @apply bg-[#DB0000] hover:bg-[#831010] text-white px-4 py-2 rounded-md font-medium transition-colors duration-200;
+}
+
+.mobile-nav-link {
+  @apply text-white hover:text-[#DB0000] py-1;
+}
