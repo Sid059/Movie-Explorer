@@ -1,15 +1,18 @@
+@config "../../../../tailwind.config.js";
+@reference "tailwindcss";
+
 .nav-link {
-  @apply text-white hover:text-[#DB0000] transition-colors duration-200 font-medium;
+  @apply text-white hover:text-netflix-red transition-colors duration-200 font-netflix-medium text-nav;
 }
 
 .nav-link-active {
-  @apply text-[#DB0000];
+  @apply text-netflix-red;
 }
 
 .nav-button {
-  @apply bg-[#DB0000] hover:bg-[#831010] text-white px-4 py-2 rounded-md font-medium transition-colors duration-200;
+  @apply bg-netflix-red hover:bg-netflix-dark-red text-white px-4 py-2 rounded-md font-netflix-medium transition-colors duration-200 text-nav-mobile;
 }
 
 .mobile-nav-link {
-  @apply text-white hover:text-[#DB0000] py-1;
+  @apply text-white hover:text-netflix-red py-1 font-netflix text-nav;
 }

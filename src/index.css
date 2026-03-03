@@ -1,31 +1,30 @@
+@config "../tailwind.config.js";
 @import "tailwindcss";
 
-/* Font faces if you have the font files */
 @font-face {
   font-family: 'NetflixSans';
-  src: url('/fonts/NetflixSans-Regular.ttf') format('ttf');
-  font-weight: normal;
+  src: url('../src/assets/fonts/NetflixSans-Regular.ttf') format('truetype');
+  font-weight: 400;
 }
 
 @font-face {
-  font-family: 'NetflixSans';
-  src: url('/fonts/NetflixSans-Medium.ttf') format('ttf');
+  font-family: 'NetflixSans-Medium';
+  src: url('../src/assets/fonts/NetflixSans-Medium.ttf') format('truetype');
   font-weight: 500;
 }
 
 @font-face {
-  font-family: 'NetflixSans';
-  src: url('/fonts/NetflixSans-Bold.ttf') format('ttf');
-  font-weight: bold;
+  font-family: 'NetflixSans-Bold';
+  src: url('../src/assets/fonts/NetflixSans-Bold.ttf') format('truetype');
+  font-weight: 700;
 }
 
 @font-face {
-  font-family: 'NetflixSans';
-  src: url('/fonts/NetflixSans-Light.ttf') format('ttf');
+  font-family: 'NetflixSans-Light';
+  src: url('../src/assets/fonts/NetflixSans-Light.ttf') format('truetype');
   font-weight: 300;
 }
 
-/* Set default font */
 html {
   font-family: 'NetflixSans', sans-serif;
   background-color: #000000;
