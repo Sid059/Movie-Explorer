@@ -2,7 +2,6 @@ import { RouterProvider } from 'react-router-dom';
 import { routes } from './routes/AppRoutes';
 import { AppProvider } from './context/AppContext';
 import './App.css'
-//import LoadingSpinner from './components/common/LoadingSpinner/LoadingSpinner';
 
 function App() {
 
@@ -11,7 +10,6 @@ function App() {
       <AppProvider>
         <RouterProvider router={routes} />
       </AppProvider>
-      {/* <LoadingSpinner /> */}
     </>
   )
 }

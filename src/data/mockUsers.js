@@ -25,15 +25,3 @@ export const mockUsers = [
         name: 'Demo User',
     }
 ];
-
-// Helper function to find user by credentials
-export const findUserByCredentials = (email, password) => {
-    return mockUsers.find(
-        user => user.email === email && user.password === password
-    );
-};
-
-// Helper function to find user by email only (for checking existence)
-export const findUserByEmail = (email) => {
-    return mockUsers.find(user => user.email === email);
-};

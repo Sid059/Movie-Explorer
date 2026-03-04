@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useAppContext } from '../../context/AppContext';
-import { findUserByCredentials } from '../../data/mockUsers';
+import { mockUsers } from '../../data/mockUsers';
 import Login from './Login';
 
 // Validation functions
@@ -16,6 +16,14 @@ const validatePassword = (password) => {
     if (!password) return 'Password is required';
     if (password.length < 8) return 'Password must be at least 8 characters';
     return '';
+};
+
+
+//function to find user by credentials
+const findUserByCredentials = (email, password) => {
+    return mockUsers.find(
+        user => user.email === email && user.password === password
+    );
 };
 
 export default function LoginContainer() {
@@ -67,7 +75,6 @@ export default function LoginContainer() {
             login(userWithoutPassword);
             navigate(from, { replace: true });
         } else {
-            // Login failed
             setError('Invalid email or password');
         }
     };

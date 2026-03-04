@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import RootLayout from '../components/layout/RootLayout/RootLayout';
 import ProtectedRoute from '../components/layout/ProtectedRoute/ProtectedRoute';
 import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
+import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/Home'));
@@ -22,9 +23,11 @@ const routes = createBrowserRouter(
             <Route 
                 index 
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                        <HomePage />
-                    </Suspense>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <HomePage />
+                        </Suspense>
+                    </ErrorBoundary>
                 } 
             />
             
@@ -32,9 +35,11 @@ const routes = createBrowserRouter(
             <Route 
                 path="movies" 
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                        <MoviesPage />
-                    </Suspense>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <MoviesPage />
+                        </Suspense>
+                    </ErrorBoundary>
                 } 
             />
             
@@ -42,9 +47,11 @@ const routes = createBrowserRouter(
             <Route 
                 path="movie/:id" 
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                        <MovieDetailsPage />
-                    </Suspense>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <MovieDetailsPage />
+                        </Suspense>
+                    </ErrorBoundary>
                 } 
             />
             
@@ -52,19 +59,23 @@ const routes = createBrowserRouter(
             <Route 
                 path="tv" 
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                        <TvShowsPage />
-                    </Suspense>
-                } 
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <TvShowsPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                }  
             />
             
             {/* Search route with query params */}
             <Route 
                 path="search" 
                 element={
-                    <Suspense fallback={<LoadingSpinner />}>
-                        <SearchPage />
-                    </Suspense>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <SearchPage />
+                        </Suspense>
+                    </ErrorBoundary>
                 } 
             />
             
@@ -73,9 +84,11 @@ const routes = createBrowserRouter(
                 path="watchlist" 
                 element={
                     <ProtectedRoute>
-                        <Suspense fallback={<LoadingSpinner />}>
-                            <WatchlistPage />
-                        </Suspense>
+                        <ErrorBoundary>
+                            <Suspense fallback={<LoadingSpinner />}>
+                                <WatchlistPage />
+                            </Suspense>
+                        </ErrorBoundary>
                     </ProtectedRoute>
                 } 
             />
