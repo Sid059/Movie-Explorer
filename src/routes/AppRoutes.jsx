@@ -3,6 +3,7 @@ import { lazy, Suspense } from 'react';
 import RootLayout from '../components/layout/RootLayout/RootLayout';
 import ProtectedRoute from '../components/layout/ProtectedRoute/ProtectedRoute';
 import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
+
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/Home'));
 const MoviesPage = lazy(() => import('../pages/Movies'));
@@ -10,6 +11,8 @@ const MovieDetailsPage = lazy(() => import('../pages/MovieDetails'));
 const TvShowsPage = lazy(() => import('../pages/TvShows'));
 const SearchPage = lazy(() => import('../pages/SearchResults'));
 const WatchlistPage = lazy(() => import('../pages/Watchlist'));
+const LoginPage = lazy(() => import('../pages/Login/LoginContainer'));
+
 
 // Create router using JSX notation with createRoutesFromElements
 const routes = createBrowserRouter(
@@ -76,6 +79,17 @@ const routes = createBrowserRouter(
                     </ProtectedRoute>
                 } 
             />
+
+             {/* Login route */}
+            <Route 
+                path="login" 
+                element={
+                    <Suspense fallback={<LoadingSpinner />}>
+                        <LoginPage />
+                    </Suspense>
+                } 
+            />
+
         </Route>
     )
 );

@@ -8,8 +8,8 @@ export function AppProvider({ children }){
 
     const isAuthenticated = !!user;
 
-    const login = () => {
-        setUser({ name: 'Movie Fan'});  //Mock user
+    const login = (userData) => {
+        setUser(userData);
     }
 
     const logout = () => {
