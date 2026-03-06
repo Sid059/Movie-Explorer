@@ -66,7 +66,7 @@ class ErrorBoundaryClass extends React.Component {
 
 export default function ErrorBoundary(props) {
     const location = useLocation();  // Get current location
-    // key={location.pathname} - when location changes it causes the key to change and component resets or the old one is destroyed and new one is created
+    // key={location.pathname} - the error boundary always has a key for every component it is wrapped around regardless of errors, when location changes it causes the key to change and component resets or the old one is destroyed and new one is created
     // {...props} - pass all children down
     return <ErrorBoundaryClass key={location.pathname} {...props} />;
 }

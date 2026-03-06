@@ -89,7 +89,7 @@ export default function MovieCard({ movie, isAuthenticated, isInWatchlist, onWat
                 {isAuthenticated && (
                     <button
                         onClick={handleWatchlistClick}
-                        className="absolute top-2 right-2 bg-black/50 hover:bg-netflix-red text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 backdrop-blur-sm"
+                        className="absolute top-2 right-2 bg-black/50 hover:bg-netflix-red cursor-pointer text-white w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-200 backdrop-blur-sm"
                     >
                         {isInWatchlist ? '✓' : '+'}
                     </button>
