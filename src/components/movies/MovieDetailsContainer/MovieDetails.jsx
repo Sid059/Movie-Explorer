@@ -95,7 +95,7 @@ export default function MovieDetails({ movie }) {
                     )}
                     
                     {activeTab === 'cast' && (
-                        <CastList cast={credits.cast.slice(0, 12)} />
+                        <CastList cast={credits.cast} />
                     )}
                     
                     {activeTab === 'reviews' && (

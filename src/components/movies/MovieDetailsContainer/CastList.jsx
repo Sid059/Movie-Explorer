@@ -1,10 +1,31 @@
+import { useState } from 'react';
+
 export default function CastList({ cast }) {
+    const [isExpanded, setIsExpanded] = useState(false);
+    const INITIAL_DISPLAY_COUNT = 12;
+    
+    const displayedCast = isExpanded ? cast : cast.slice(0, INITIAL_DISPLAY_COUNT);
+    const hasMore = cast.length > INITIAL_DISPLAY_COUNT;
+
     return (
         <div>
-            <h2 className="text-white text-2xl font-netflix-bold mb-6">Cast</h2>
+            <div className="flex items-center justify-between mb-6">
+                <h2 className="text-white text-2xl font-netflix-bold">
+                    Cast ({cast.length})
+                </h2>
+                
+                {hasMore && (
+                    <button
+                        onClick={() => setIsExpanded(!isExpanded)}
+                        className="text-netflix-gray text-sm font-netflix-medium hover:text-white focus:outline-none"
+                    >
+                        {isExpanded ? 'Show less' : `View all ${cast.length} cast members`}
+                    </button>
+                )}
+            </div>
             
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {cast.map(person => (
+                {displayedCast.map(person => (
                     <div key={person.id} className="text-center">
                         <img
                             src={person.profile_path 
