@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-
-const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
-const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+import { API_KEY, BASE_URL } from '../utils/api';
 
 //This runs ONCE when the file loads gets destroyed on every refresh or browser closing, persists on navigating between pages
 const globalCache = {};
@@ -35,13 +33,10 @@ export default function useFetch(endpoint, options = {}) {
         let isMounted = true; //isMounted tracks if component is still on screen
 
         if (globalCache[url]) {
-            console.log('📦 GLOBAL CACHE HIT! Using cached data for:', url);
             setData(globalCache[url]);
             setLoading(false);
             return;
         }
-
-        console.log('🌐 CACHE MISS! Fetching from API:', url);
 
         const controller = new AbortController();
         
@@ -60,8 +55,6 @@ export default function useFetch(endpoint, options = {}) {
 
                 if(isMounted){  //Only update state if component is STILL mounted
                     //save to cache with url as the key and value as the result object
-                     // 💾 SAVE TO CACHE
-                    console.log('💾 Saving to global cache:', url);
                     globalCache[url] = result;
                     setData(result);
                 }

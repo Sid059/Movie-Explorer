@@ -3,6 +3,7 @@ import HeroSection from './HeroSection';
 import MovieInfo from './MovieInfo';
 import CastList from './CastList';
 import SimilarMovies from './SimilarMovies';
+import ReviewsSection from './ReviewsSection';
 import './MovieDetails.css';
 
 export default function MovieDetails({ movie }) {

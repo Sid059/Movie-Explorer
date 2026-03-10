@@ -1,3 +1,5 @@
+import { formatDate } from "../../../utils/helperFunction";
+
 export default function MovieInfo({ overview, genres, releaseDate, runtime }) {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -30,11 +32,7 @@ export default function MovieInfo({ overview, genres, releaseDate, runtime }) {
                 <div>
                     <h3 className="info-section-heading">Release Date</h3>
                     <p className="info-text">
-                        {new Date(releaseDate).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        })}
+                        { formatDate(releaseDate) }
                     </p>
                 </div>
                 
