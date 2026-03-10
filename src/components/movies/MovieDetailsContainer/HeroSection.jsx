@@ -102,7 +102,7 @@ export default function HeroSection({
                             <div className="flex items-center gap-4 text-netflix-gray mb-4">
                                 <span className="flex items-center gap-1">
                                     <span className="text-netflix-red">★</span>
-                                    {rating?.toFixed(1) || 'N/A'}
+                                    {rating && rating > 0 ? rating.toFixed(1) : 'N/A'}
                                 </span>
                                 <span>•</span>
                                 <span>{releaseYear || 'N/A'}</span>
