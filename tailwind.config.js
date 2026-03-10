@@ -9,7 +9,7 @@ export default {
       colors: {
         'netflix-red': '#DB0000',
         'netflix-dark-red': '#831010',
-        'netflix-gray': '#564D4D',
+        'netflix-gray': '#9CA3AF',
       },
       fontFamily: {
         'netflix': ['NetflixSans', 'sans-serif'],

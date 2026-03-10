@@ -115,7 +115,7 @@ export default function MovieCard({ movie, isAuthenticated, isInWatchlist, onWat
                 <h3 className="text-white text-sm font-netflix-medium line-clamp-1">
                     {title}
                 </h3>
-                <p className="text-netflix-gray text-xs mt-1">
+                <p className=" text-xs mt-1">
                     {year} • ★ {rating}
                 </p>
             </div>

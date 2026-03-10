@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { formatDate } from '../../../utils/helperFunction';
 
 export default function ReviewsSection({ reviews = [] }) {
-    const [expandedReviewId, setExpandedReviewId] = useState(null);
+    const [expandedReviews, setExpandedReviews] = useState({});
 
     const toggleReview = (reviewId) => {
-        setExpandedReviewId(prevId => prevId === reviewId ? null : reviewId);
+        setExpandedReviews(prev => ({
+            ...prev,
+            [reviewId]: !prev[reviewId]
+        }));
     };
 
     if (reviews.length === 0) {
@@ -24,7 +27,7 @@ export default function ReviewsSection({ reviews = [] }) {
             
             <div className="space-y-4">
                 {reviews.map((review) => {
-                    const isExpanded = expandedReviewId === review.id;
+                    const isExpanded = expandedReviews[review.id];
                     const shouldTruncate = review.content?.length > 300 && !isExpanded;
                     
                     return (
