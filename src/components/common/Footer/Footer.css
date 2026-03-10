@@ -1,1 +1,10 @@
-ECHO is on.
+@config "../../../../tailwind.config.js";
+@reference "tailwindcss";
+
+.nav-link{
+    @apply text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200;
+}
+
+.topic-header{
+    @apply text-white font-netflix-medium mb-4;
+}

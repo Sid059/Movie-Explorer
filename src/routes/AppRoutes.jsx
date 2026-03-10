@@ -7,8 +7,8 @@ import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/Home'));
-const MoviesPage = lazy(() => import('../pages/Movies'));
-const MovieDetailsPage = lazy(() => import('../pages/MovieDetails'));
+const MoviesPage = lazy(() => import('../pages/MoviesPage'));
+const MovieDetailsPage = lazy(() => import('../components/movies/MovieDetailsContainer/MovieDetailsContainer'));
 const TvShowsPage = lazy(() => import('../pages/TvShows'));
 const SearchPage = lazy(() => import('../pages/SearchResults'));
 const WatchlistPage = lazy(() => import('../pages/Watchlist'));

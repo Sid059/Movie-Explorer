@@ -1,25 +1,47 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function useFetch(url, options = {}) {
+const BASE_URL = import.meta.env.VITE_TMDB_BASE_URL;
+const API_KEY = import.meta.env.VITE_TMDB_API_KEY;
+
+//This runs ONCE when the file loads gets destroyed on every refresh or browser closing, persists on navigating between pages
+const globalCache = {};
+
+export default function useFetch(endpoint, options = {}) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const cache = useRef({});
-
     useEffect(() => {
-        if(!url) {
+        if(!endpoint) {
             setLoading(false);
             return; //if no url is provided do not attempt to fetch data
         }
 
+        // Case 1: Popular Movies - NO existing params
+        // endpoint = "/movie/popular"
+        // endpoint.includes('?')? → false → separator = '?'
+        // url = "https://api.../movie/popular?api_key=123"
+
+        // Case 2: Movie Details - HAS existing params
+        // endpoint = "/movie/123?append_to_response=credits"
+        // endpoint.includes('?')? → true → separator = '&'
+        // url = "https://api.../movie/123?append_to_response=credits&api_key=123"
+
+        const separator = endpoint.includes('?') ? '&' : '?';
+        const url = `${BASE_URL}${endpoint}${separator}api_key=${API_KEY}`;
+
+        console.log('Fetching URL:', url); // Debug to verify
+
         let isMounted = true; //isMounted tracks if component is still on screen
 
-        if (cache.current[url]) {
-            setData(cache.current[url]);
+        if (globalCache[url]) {
+            console.log('📦 GLOBAL CACHE HIT! Using cached data for:', url);
+            setData(globalCache[url]);
             setLoading(false);
             return;
         }
+
+        console.log('🌐 CACHE MISS! Fetching from API:', url);
 
         const controller = new AbortController();
         
@@ -37,8 +59,10 @@ export default function useFetch(url, options = {}) {
                 const result = await response.json();
 
                 if(isMounted){  //Only update state if component is STILL mounted
-                    //save to cache
-                    cache.current[url] = result;
+                    //save to cache with url as the key and value as the result object
+                     // 💾 SAVE TO CACHE
+                    console.log('💾 Saving to global cache:', url);
+                    globalCache[url] = result;
                     setData(result);
                 }
 
@@ -62,7 +86,7 @@ export default function useFetch(url, options = {}) {
             controller.abort();
         }
 
-    }, [url, JSON.stringify(options)]); // Options as dependency
+    }, [endpoint, JSON.stringify(options)]); // Options as dependency
 
     return { data, loading, error };
 }

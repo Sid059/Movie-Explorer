@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export default function MovieCard({ movie, isAuthenticated, isInWatchlist, onWatchlistToggle }) {
+    
+    if (!movie) {
+        return null;
+    }
 
     const navigate = useNavigate();
     const [imageLoaded, setImageLoaded] = useState(false);

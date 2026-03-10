@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import './Footer.css';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -20,12 +21,12 @@ export default function Footer() {
                     
                     {/* Column 2 - Explore Links */}
                     <div>
-                        <h4 className="text-white font-netflix-medium mb-4">Explore</h4>
+                        <h4 className="topic-header">Explore</h4>
                         <ul className="space-y-3">
                             <li>
                                 <NavLink 
                                     to="/movies" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     Movies
                                 </NavLink>
@@ -33,7 +34,7 @@ export default function Footer() {
                             <li>
                                 <NavLink 
                                     to="/tv" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     TV Shows
                                 </NavLink>
@@ -41,7 +42,7 @@ export default function Footer() {
                             <li>
                                 <NavLink 
                                     to="/search" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     Search
                                 </NavLink>
@@ -51,12 +52,12 @@ export default function Footer() {
                     
                     {/* Column 3 - Support Links */}
                     <div>
-                        <h4 className="text-white font-netflix-medium mb-4">Support</h4>
+                        <h4 className="topic-header">Support</h4>
                         <ul className="space-y-3">
                             <li>
                                 <NavLink 
                                     to="/about" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     About Us
                                 </NavLink>
@@ -64,7 +65,7 @@ export default function Footer() {
                             <li>
                                 <NavLink 
                                     to="/contact" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     Contact
                                 </NavLink>
@@ -72,7 +73,7 @@ export default function Footer() {
                             <li>
                                 <NavLink 
                                     to="/faq" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     FAQ
                                 </NavLink>
@@ -82,12 +83,12 @@ export default function Footer() {
                     
                     {/* Column 4 - Legal Links */}
                     <div>
-                        <h4 className="text-white font-netflix-medium mb-4">Legal</h4>
+                        <h4 className="topic-header">Legal</h4>
                         <ul className="space-y-3">
                             <li>
                                 <NavLink 
                                     to="/privacy" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     Privacy Policy
                                 </NavLink>
@@ -95,7 +96,7 @@ export default function Footer() {
                             <li>
                                 <NavLink 
                                     to="/terms" 
-                                    className="text-[#B3B3B3] hover:text-netflix-red text-sm transition-colors duration-200"
+                                    className="nav-link"
                                 >
                                     Terms of Use
                                 </NavLink>
