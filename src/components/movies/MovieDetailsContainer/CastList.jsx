@@ -34,6 +34,7 @@ export default function CastList({ cast }) {
                             }
                             alt={person.name}
                             className="w-full aspect-square object-cover rounded-lg mb-2"
+                            loading='lazy'
                         />
                         <h3 className="text-white text-sm font-netflix-medium">
                             {person.name}
