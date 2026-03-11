@@ -28,8 +28,6 @@ export default function useFetch(endpoint, options = {}) {
         const separator = endpoint.includes('?') ? '&' : '?';
         const url = `${BASE_URL}${endpoint}${separator}api_key=${API_KEY}`;
 
-        console.log('Fetching URL:', url); // Debug to verify
-
         let isMounted = true; //isMounted tracks if component is still on screen
 
         if (globalCache[url]) {

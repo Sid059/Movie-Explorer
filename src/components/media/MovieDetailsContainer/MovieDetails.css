@@ -6,7 +6,7 @@
 }
 
 .tab-button-active {
-  @apply text-netflix-red border-b-2 border-netflix-red;
+  @apply text-netflix-red;
 }
 
 .tab-button-inactive {
@@ -25,14 +25,4 @@
 /*MovieDetailsContainer style*/
 .fullscreen-center {
   @apply min-h-screen flex items-center justify-center;
-}
-
-/*MovieInfo Styles*/
-
-.info-section-heading {
-  @apply text-white font-netflix-medium mb-2;
-}
-
-.info-text {
-  @apply text-netflix-gray;
 }

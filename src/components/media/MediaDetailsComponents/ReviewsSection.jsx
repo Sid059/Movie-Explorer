@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { formatDate } from '../../../utils/helperFunction';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function ReviewsSection({ reviews = [] }) {
     const [expandedReviews, setExpandedReviews] = useState({});
@@ -56,7 +58,9 @@ export default function ReviewsSection({ reviews = [] }) {
                                 {/* Rating if available */}
                                 {review.author_details?.rating && (
                                     <div className="flex items-center gap-1 bg-black/30 px-3 py-1 rounded-full">
-                                        <span className="text-netflix-red text-sm">★</span>
+                                        <span className="text-netflix-red text-sm">
+                                            <FontAwesomeIcon icon={faStar} />
+                                        </span>
                                         <span className="text-white text-sm font-netflix-medium">
                                             {review.author_details.rating}/10
                                         </span>

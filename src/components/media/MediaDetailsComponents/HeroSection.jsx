@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlay, faBookmark as fasBookmark } from '@fortawesome/free-solid-svg-icons';
+import { faBookmark as farBookmark } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export default function HeroSection({ 
     backdropPath, 
@@ -6,11 +10,18 @@ export default function HeroSection({
     title, 
     rating, 
     releaseYear, 
-    runtime 
-}){
-
+    runtime,
+    mediaType,           // 'movie' or 'tv'
+    isInWatchlist,       // boolean
+    onWatchlistToggle    // function
+}) {
     const [backdropError, setBackdropError] = useState(false);
     const [posterError, setPosterError] = useState(false);
+
+    const handleWatchlistClick = (e) => {
+        e.stopPropagation();
+        onWatchlistToggle();
+    };
 
     return (
         <div className="relative h-[60vh] lg:h-[70vh] w-full">
@@ -48,7 +59,9 @@ export default function HeroSection({
                         
                         <div className="flex items-center justify-center gap-3 sm:gap-4 text-netflix-gray mb-4 flex-wrap">
                             <span className="flex items-center gap-1">
-                                <span className="text-netflix-red">★</span>
+                                <span className="text-netflix-red">
+                                    <FontAwesomeIcon icon={faStar} />
+                                </span>
                                 {rating?.toFixed(1) || 'N/A'}
                             </span>
                             <span>•</span>
@@ -58,11 +71,18 @@ export default function HeroSection({
                         </div>
                         
                         <div className="flex gap-3 sm:gap-4 justify-center">
-                            <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base">
-                                ▶ Watch Now
+                            <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base flex items-center gap-2">
+                                <FontAwesomeIcon icon={faPlay} className="text-xs sm:text-sm" /> 
+                                Play Trailer
                             </button>
-                            <button className="bg-netflix-gray/50 hover:bg-netflix-gray text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base">
-                                + Watchlist
+                            <button 
+                                onClick={handleWatchlistClick}
+                                className="bg-netflix-gray/50 hover:bg-netflix-gray text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full font-netflix-medium transition-colors flex items-center justify-center"
+                            >
+                                <FontAwesomeIcon 
+                                    icon={isInWatchlist ? fasBookmark : farBookmark} 
+                                    className="text-sm sm:text-base" 
+                                />
                             </button>
                         </div>
                     </div>
@@ -93,7 +113,7 @@ export default function HeroSection({
                             )}
                         </div>
                         
-                        {/* Movie Info */}
+                        {/* Media Info */}
                         <div className="flex-1">
                             <h1 className="text-white text-5xl font-netflix-bold mb-4">
                                 {title}
@@ -101,7 +121,9 @@ export default function HeroSection({
                             
                             <div className="flex items-center gap-4 text-netflix-gray mb-4">
                                 <span className="flex items-center gap-1">
-                                    <span className="text-netflix-red">★</span>
+                                    <span className="text-netflix-red">
+                                        <FontAwesomeIcon icon={faStar} />
+                                    </span>
                                     {rating && rating > 0 ? rating.toFixed(1) : 'N/A'}
                                 </span>
                                 <span>•</span>
@@ -111,11 +133,16 @@ export default function HeroSection({
                             </div>
                             
                             <div className="flex gap-4">
-                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-8 py-3 rounded-md font-netflix-medium transition-colors">
-                                    ▶ Watch Now
+                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-8 py-3 rounded-md font-netflix-medium transition-colors flex items-center gap-2">
+                                    <FontAwesomeIcon icon={faPlay} /> Play Trailer
                                 </button>
-                                <button className="bg-netflix-gray/50 hover:bg-netflix-gray text-white px-8 py-3 rounded-md font-netflix-medium transition-colors">
-                                    + Watchlist
+                                <button 
+                                    onClick={handleWatchlistClick}
+                                    className="bg-netflix-gray/50 hover:bg-netflix-gray text-white w-12 h-12 rounded-full font-netflix-medium transition-colors flex items-center justify-center"
+                                >
+                                    <FontAwesomeIcon 
+                                        icon={isInWatchlist ? fasBookmark : farBookmark} 
+                                    />
                                 </button>
                             </div>
                         </div>

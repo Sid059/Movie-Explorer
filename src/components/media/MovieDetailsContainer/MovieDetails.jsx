@@ -1,10 +1,12 @@
 import { useState, useMemo } from 'react';
-import HeroSection from './HeroSection';
-import MovieInfo from './MovieInfo';
-import CastList from './CastList';
-import SimilarMovies from './SimilarMovies';
-import ReviewsSection from './ReviewsSection';
+import HeroSection from '../MediaDetailsComponents/HeroSection';
+import MediaInfo from '../MediaDetailsComponents/MediaInfo';
+import CastList from '../MediaDetailsComponents/CastList';
+import SimilarMedia from '../MediaDetailsComponents/SimilarMedia';
+import ReviewsSection from '../MediaDetailsComponents/ReviewsSection';
 import './MovieDetails.css';
+
+import { useAppContext } from '../../../context/AppContext';
 
 export default function MovieDetails({ movie }) {
     const [activeTab, setActiveTab] = useState('info');
@@ -22,6 +24,8 @@ export default function MovieDetails({ movie }) {
         reviews = { results: [] },
         similar = { results: [] }
     } = movie;
+
+    const { toggleMovieWatchlist, isInMovieWatchlist } = useAppContext();
     
     // Format runtime (e.g., 148 → "2h 28m")
     const formattedRuntime = useMemo(() => {
@@ -45,6 +49,9 @@ export default function MovieDetails({ movie }) {
                 rating={vote_average}
                 releaseYear={releaseYear}
                 runtime={formattedRuntime}
+                mediaType="movie"
+                isInWatchlist={isInMovieWatchlist(movie?.id)}  // You'll need this from context
+                onWatchlistToggle={() => toggleMovieWatchlist(movie)}
             />
             
             {/* Main Content Container */}
@@ -86,7 +93,7 @@ export default function MovieDetails({ movie }) {
                 {/* Tab Content */}
                 <div className="mb-12">
                     {activeTab === 'info' && (
-                        <MovieInfo
+                        <MediaInfo
                             overview={overview}
                             genres={genres}
                             releaseDate={release_date}
@@ -105,7 +112,10 @@ export default function MovieDetails({ movie }) {
                 
                 {/* Similar Movies Section (always visible) */}
                 {similar.results.length > 0 && (
-                    <SimilarMovies movies={similar.results} />
+                    <SimilarMedia 
+                        items={similar.results}
+                        mediaType="movie"
+                     />
                 )}
             </div>
         </div>

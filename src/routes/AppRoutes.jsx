@@ -6,12 +6,13 @@ import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary';
 
 // Lazy load pages
-const HomePage = lazy(() => import('../pages/Home'));
+const HomePage = lazy(() => import('../pages/HomePage'));
 const MoviesPage = lazy(() => import('../pages/MoviesPage'));
-const MovieDetailsPage = lazy(() => import('../components/movies/MovieDetailsContainer/MovieDetailsContainer'));
-const TvShowsPage = lazy(() => import('../pages/TvShows'));
+const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
+const TVShowsPage = lazy(() => import('../pages/TvShowsPage'));
+const TVDetailsPage = lazy(() => import('../pages/TVDetailsPage'));
 const SearchPage = lazy(() => import('../pages/SearchResults'));
-const WatchlistPage = lazy(() => import('../pages/Watchlist'));
+const WatchlistPage = lazy(() => import('../pages/WatchlistPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginContainer'));
 
 
@@ -61,10 +62,20 @@ const routes = createBrowserRouter(
                 element={
                     <ErrorBoundary>
                         <Suspense fallback={<LoadingSpinner />}>
-                            <TvShowsPage />
+                            <TVShowsPage />
                         </Suspense>
                     </ErrorBoundary>
                 }  
+            />
+
+            {/* Dynamic route for tv shows details */}
+            <Route 
+                path="tv/:id" 
+                element={
+                    <Suspense fallback={<LoadingSpinner />}>
+                        <TVDetailsPage />
+                    </Suspense>
+                } 
             />
             
             {/* Search route with query params */}

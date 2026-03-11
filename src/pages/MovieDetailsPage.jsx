@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
-import useFetch from '../../../hooks/useFetch';
-import MovieDetails from './MovieDetails';
-import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
-import ErrorBoundary from '../../common/ErrorBoundary/ErrorBoundary';
-import EmptyState from '../../common/EmptyState/EmptyState';
-import './MovieDetails.css';
+import useFetch from '../hooks/useFetch';
+import MovieDetails from '../components/media/MovieDetailsContainer/MovieDetails';
+import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
+import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary'
+import EmptyState from '../components/common/EmptyState/EmptyState';
+import '../components/media/MovieDetailsContainer/MovieDetails.css';
 
-export default function MovieDetailsContainer() {
+export default function MovieDetailsPage() {
 
     const { id } = useParams();
 
@@ -16,7 +16,6 @@ export default function MovieDetailsContainer() {
         error: movieError 
     } = useFetch(`/movie/${id}?append_to_response=credits,reviews,similar`);
 
-    // console.log('Movie details:', movie);
     
     if (movieLoading) {
         return (
