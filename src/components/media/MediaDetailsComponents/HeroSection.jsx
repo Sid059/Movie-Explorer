@@ -11,9 +11,10 @@ export default function HeroSection({
     rating, 
     releaseYear, 
     runtime,
-    mediaType,           // 'movie' or 'tv'
-    isInWatchlist,       // boolean
-    onWatchlistToggle    // function
+    mediaType,           
+    isInWatchlist,       
+    onWatchlistToggle,
+    isAuthenticated    
 }) {
     const [backdropError, setBackdropError] = useState(false);
     const [posterError, setPosterError] = useState(false);
@@ -48,49 +49,12 @@ export default function HeroSection({
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
             </div>
             
-            {/* Content Overlay - Bottom on all screens */}
+            {/* Content Overlay - Single responsive layout */}
             <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 lg:p-16">
-                <div className="w-full">
-                    {/* Mobile Layout - Centered */}
-                    <div className="block lg:hidden text-center">
-                        <h1 className="text-white text-3xl sm:text-4xl font-netflix-bold mb-3">
-                            {title}
-                        </h1>
-                        
-                        <div className="flex items-center justify-center gap-3 sm:gap-4 text-netflix-gray mb-4 flex-wrap">
-                            <span className="flex items-center gap-1">
-                                <span className="text-netflix-red">
-                                    <FontAwesomeIcon icon={faStar} />
-                                </span>
-                                {rating?.toFixed(1) || 'N/A'}
-                            </span>
-                            <span>•</span>
-                            <span>{releaseYear || 'N/A'}</span>
-                            <span>•</span>
-                            <span>{runtime || 'N/A'}</span>
-                        </div>
-                        
-                        <div className="flex gap-3 sm:gap-4 justify-center">
-                            <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base flex items-center gap-2">
-                                <FontAwesomeIcon icon={faPlay} className="text-xs sm:text-sm" /> 
-                                Play Trailer
-                            </button>
-                            <button 
-                                onClick={handleWatchlistClick}
-                                className="bg-netflix-gray/50 hover:bg-netflix-gray text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full font-netflix-medium transition-colors flex items-center justify-center"
-                            >
-                                <FontAwesomeIcon 
-                                    icon={isInWatchlist ? fasBookmark : farBookmark} 
-                                    className="text-sm sm:text-base" 
-                                />
-                            </button>
-                        </div>
-                    </div>
-                    
-                    {/* Desktop Layout - With Poster */}
-                    <div className="hidden lg:flex max-w-7xl mx-auto gap-8 items-end">
-                        {/* Poster */}
-                        <div className="w-64">
+                <div className="max-w-7xl mx-auto">
+                    <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-end">
+                        {/* Poster - hidden on mobile, visible on desktop */}
+                        <div className="hidden lg:block w-64 flex-shrink-0">
                             {!posterError ? (
                                 <img
                                     src={`https://image.tmdb.org/t/p/w500${posterPath}`}
@@ -113,13 +77,13 @@ export default function HeroSection({
                             )}
                         </div>
                         
-                        {/* Media Info */}
-                        <div className="flex-1">
-                            <h1 className="text-white text-5xl font-netflix-bold mb-4">
+                        {/* Media Info - Centered on mobile, left-aligned on desktop */}
+                        <div className="flex-1 text-center lg:text-left w-full">  {/* Added w-full */}
+                            <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-netflix-bold mb-3 lg:mb-4 px-2">  {/* Added px-2 for mobile padding */}
                                 {title}
                             </h1>
                             
-                            <div className="flex items-center gap-4 text-netflix-gray mb-4">
+                            <div className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 text-netflix-gray mb-4 flex-wrap px-2">  {/* Added px-2 */}
                                 <span className="flex items-center gap-1">
                                     <span className="text-netflix-red">
                                         <FontAwesomeIcon icon={faStar} />
@@ -132,18 +96,22 @@ export default function HeroSection({
                                 <span>{runtime || 'N/A'}</span>
                             </div>
                             
-                            <div className="flex gap-4">
-                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-8 py-3 rounded-md font-netflix-medium transition-colors flex items-center gap-2">
-                                    <FontAwesomeIcon icon={faPlay} /> Play Trailer
+                            <div className="flex gap-3 sm:gap-4 justify-center lg:justify-start px-2">  {/* Added px-2 */}
+                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base flex items-center gap-2">
+                                    <FontAwesomeIcon icon={faPlay} className="text-xs sm:text-sm" /> 
+                                    Play Trailer
                                 </button>
-                                <button 
-                                    onClick={handleWatchlistClick}
-                                    className="bg-netflix-gray/50 hover:bg-netflix-gray text-white w-12 h-12 rounded-full font-netflix-medium transition-colors flex items-center justify-center"
-                                >
-                                    <FontAwesomeIcon 
-                                        icon={isInWatchlist ? fasBookmark : farBookmark} 
-                                    />
-                                </button>
+                                {isAuthenticated && (
+                                    <button 
+                                        onClick={handleWatchlistClick}
+                                        className="bg-netflix-gray/50 hover:bg-netflix-gray text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full font-netflix-medium transition-colors flex items-center justify-center"
+                                    >
+                                        <FontAwesomeIcon 
+                                            icon={isInWatchlist ? fasBookmark : farBookmark} 
+                                            className="text-sm sm:text-base" 
+                                        />
+                                    </button>
+                                )}
                             </div>
                         </div>
                     </div>

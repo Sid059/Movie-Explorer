@@ -27,18 +27,8 @@ export default function TVDetails({ show }) {
         similar = { results: [] }
     } = show;
     
-    const { toggleTVWatchlist, isInTVWatchlist } = useAppContext();
+    const { isAuthenticated, toggleTVWatchlist, isInTVWatchlist } = useAppContext();
 
-    // Format rating
-    const rating = vote_average?.toFixed(1);
-    
-    // Format years (e.g., "2021-2024" or "2021-")
-    const yearsDisplay = useMemo(() => {
-        const startYear = first_air_date ? new Date(first_air_date).getFullYear() : '?';
-        const endYear = last_air_date ? new Date(last_air_date).getFullYear() : '';
-        return endYear ? `${startYear}-${endYear}` : `${startYear}-`;
-    }, [first_air_date, last_air_date]);
-    
     // Format seasons/episodes info
     const seasonsInfo = `${number_of_seasons} season${number_of_seasons !== 1 ? 's' : ''}, ${number_of_episodes} episode${number_of_episodes !== 1 ? 's' : ''}`;
     
@@ -60,6 +50,7 @@ export default function TVDetails({ show }) {
                 mediaType="tv"
                 isInWatchlist={isInTVWatchlist(show?.id)}  // From context
                 onWatchlistToggle={() => toggleTVWatchlist(show)}
+                isAuthenticated={isAuthenticated}
             />
             
             {/* Main Content Container */}

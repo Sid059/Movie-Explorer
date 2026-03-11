@@ -25,7 +25,7 @@ export default function MovieDetails({ movie }) {
         similar = { results: [] }
     } = movie;
 
-    const { toggleMovieWatchlist, isInMovieWatchlist } = useAppContext();
+    const { isAuthenticated, toggleMovieWatchlist, isInMovieWatchlist } = useAppContext();
     
     // Format runtime (e.g., 148 → "2h 28m")
     const formattedRuntime = useMemo(() => {
@@ -52,6 +52,7 @@ export default function MovieDetails({ movie }) {
                 mediaType="movie"
                 isInWatchlist={isInMovieWatchlist(movie?.id)}  // You'll need this from context
                 onWatchlistToggle={() => toggleMovieWatchlist(movie)}
+                isAuthenticated={isAuthenticated}
             />
             
             {/* Main Content Container */}
