@@ -7,7 +7,7 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
     
     const getPageNumbers = () => {
         if (totalPages <= 10) {
-            return Array.from({ length: totalPages }, (_, i) => i + 1);
+            return Array.from({ length: totalPages }, (_, i) => i + 1); //Array.from({ length: 5 }).map((_, i) => i + 1)
         }
         
         const pages = [];

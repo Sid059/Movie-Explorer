@@ -11,7 +11,7 @@ export default function MoviesPage() {
     // Add page parameter to endpoint
     const { data, loading, error } = useFetch(`/movie/popular?page=${currentPage}`);
     
-    const watchlistIds = movieWatchlist.map(m => m.id);
+    const watchlistIds = movieWatchlist.map(m => m.id); //to check if its in the watchlist
     const totalPages = data?.total_pages || 1;
     
     const handlePageChange = (newPage) => {
