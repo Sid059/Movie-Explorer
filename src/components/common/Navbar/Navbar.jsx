@@ -1,42 +1,108 @@
 import { NavLink } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown, faAngleUp } from '@fortawesome/free-solid-svg-icons';
+import { movieOptions, tvOptions } from '../../../utils/navOptions';
 import './Navbar.css';
 
 export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutClick, isMobileMenuOpen, toggleMobileMenu }){
+    const [openDropdown, setOpenDropdown] = useState(null);
+    const dropdownRef = useRef(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setOpenDropdown(null);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    const toggleDropdown = (dropdown) => {
+        setOpenDropdown(openDropdown === dropdown ? null : dropdown);
+    };
+
     return (
-        <nav className="bg-[#000000] border-b border-netflix-gray px-4 py-3"> 
+        <nav className="bg-[#000000] border-b border-netflix-gray px-4 py-3 relative z-50" ref={dropdownRef}> 
             <div className="flex items-center justify-between max-w-7xl mx-auto">
                 <NavLink to="/" className="text-netflix-red font-netflix-bold text-logo tracking-wider">
                     MOVIE<span className="text-white">FLIX</span>
                 </NavLink>
 
                 <div className="hidden md:flex items-center space-x-6">
-                    <NavLink 
-                        to="/movies" 
-                        className={({ isActive }) => 
-                            `nav-link ${isActive ? 'nav-link-active' : ''}`
-                        }
-                    >
-                        Movies
-                    </NavLink>
-                    
-                    <NavLink 
-                        to="/tv" 
-                        className={({ isActive }) => 
-                            `nav-link ${isActive ? 'nav-link-active' : ''}`
-                        }
-                    >
-                        TV Shows
-                    </NavLink>
-                    
-                    {/* <NavLink 
-                        to="/search" 
-                        className={({ isActive }) => 
-                            `nav-link ${isActive ? 'nav-link-active' : ''}`
-                        }
-                    >
-                        Search
-                    </NavLink> */}
-                    
+                    {/* Movies Dropdown - Click */}
+                    <div className="relative">
+                        <button
+                            onClick={() => toggleDropdown('movies')}
+                            className="nav-link flex items-center gap-1"
+                        >
+                            Movies
+                            <FontAwesomeIcon 
+                                icon={openDropdown === 'movies' ? faAngleUp : faAngleDown} 
+                                className="w-4 h-4 transition-transform duration-200"
+                            />
+                        </button>
+                        
+                        {openDropdown === 'movies' && (
+                            <div className="absolute top-full left-0 mt-2 w-48 bg-[#111] rounded-lg shadow-xl border border-netflix-gray/30 py-2">
+                                {movieOptions.map(option => (
+                                    <NavLink
+                                        key={option.path}
+                                        to={option.path}
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm transition-colors ${
+                                                isActive 
+                                                    ? 'text-netflix-red bg-netflix-red/10' 
+                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/10'
+                                            }`
+                                        }
+                                        onClick={() => setOpenDropdown(null)}
+                                    >
+                                        {option.label}
+                                    </NavLink>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* TV Shows Dropdown - Click */}
+                    <div className="relative">
+                        <button
+                            onClick={() => toggleDropdown('tv')}
+                            className="nav-link flex items-center gap-1"
+                        >
+                            TV Shows
+                            <FontAwesomeIcon 
+                                icon={openDropdown === 'tv' ? faAngleUp : faAngleDown} 
+                                className="w-4 h-4 transition-transform duration-200"
+                            />
+                        </button>
+                        
+                        {openDropdown === 'tv' && (
+                            <div className="absolute top-full left-0 mt-2 w-48 bg-[#111] rounded-lg shadow-xl border border-netflix-gray/30 py-2">
+                                {tvOptions.map(option => (
+                                    <NavLink
+                                        key={option.path}
+                                        to={option.path}
+                                        className={({ isActive }) =>
+                                            `block px-4 py-2 text-sm transition-colors ${
+                                                isActive 
+                                                    ? 'text-netflix-red bg-netflix-red/10' 
+                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/10'
+                                            }`
+                                        }
+                                        onClick={() => setOpenDropdown(null)}
+                                    >
+                                        {option.label}
+                                    </NavLink>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
                     <NavLink 
                         to="/watchlist" 
                         className={({ isActive }) => 
@@ -80,9 +146,62 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
             {isMobileMenuOpen && (
                 <div className="md:hidden mt-3 pb-2">
                     <div className="flex flex-col space-y-2">
-                        <NavLink to="/movies" className="mobile-nav-link" onClick={toggleMobileMenu}>Movies</NavLink>
-                        <NavLink to="/tv" className="mobile-nav-link" onClick={toggleMobileMenu}>TV Shows</NavLink>
-                        {/* <NavLink to="/search" className="mobile-nav-link" onClick={toggleMobileMenu}>Search</NavLink> */}
+                        {/* Mobile Movies Dropdown */}
+                        <div>
+                            <button
+                                onClick={() => toggleDropdown('mobile-movies')}
+                                className="mobile-nav-link w-full text-left flex items-center justify-between"
+                            >
+                                Movies
+                                <FontAwesomeIcon 
+                                    icon={openDropdown === 'mobile-movies' ? faAngleUp : faAngleDown} 
+                                    className="w-4 h-4"
+                                />
+                            </button>
+                            {openDropdown === 'mobile-movies' && (
+                                <div className="pl-4 mt-2 space-y-2">
+                                    {movieOptions.map(option => (
+                                        <NavLink
+                                            key={option.path}
+                                            to={option.path}
+                                            className="mobile-nav-link block"
+                                            onClick={toggleMobileMenu}
+                                        >
+                                            {option.label}
+                                        </NavLink>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Mobile TV Shows Dropdown */}
+                        <div>
+                            <button
+                                onClick={() => toggleDropdown('mobile-tv')}
+                                className="mobile-nav-link w-full text-left flex items-center justify-between"
+                            >
+                                TV Shows
+                                <FontAwesomeIcon 
+                                    icon={openDropdown === 'mobile-tv' ? faAngleUp : faAngleDown} 
+                                    className="w-4 h-4"
+                                />
+                            </button>
+                            {openDropdown === 'mobile-tv' && (
+                                <div className="pl-4 mt-2 space-y-2">
+                                    {tvOptions.map(option => (
+                                        <NavLink
+                                            key={option.path}
+                                            to={option.path}
+                                            className="mobile-nav-link block"
+                                            onClick={toggleMobileMenu}
+                                        >
+                                            {option.label}
+                                        </NavLink>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
                         <NavLink to="/watchlist" className="mobile-nav-link" onClick={toggleMobileMenu}>Watchlist</NavLink>
                     </div>
                 </div>

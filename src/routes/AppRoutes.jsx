@@ -7,113 +7,128 @@ import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary';
 
 // Lazy load pages
 const HomePage = lazy(() => import('../pages/HomePage'));
-const MoviesPage = lazy(() => import('../pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
-const TVShowsPage = lazy(() => import('../pages/TvShowsPage'));
 const TVDetailsPage = lazy(() => import('../pages/TVDetailsPage'));
 const SearchPage = lazy(() => import('../pages/SearchResultsPage'));
 const WatchlistPage = lazy(() => import('../pages/WatchlistPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginContainer'));
+const CategoryPage = lazy(() => import('../pages/CategoryPage'));
 
-
-// Create router using JSX notation with createRoutesFromElements
 const routes = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
-            {/* Index route - Home page */}
-            <Route 
-                index 
-                element={
-                    <ErrorBoundary>
-                        <Suspense fallback={<LoadingSpinner />}>
-                            <HomePage />
-                        </Suspense>
-                    </ErrorBoundary>
-                } 
-            />
-            
-            {/* Movies routes */}
-            <Route 
-                path="movies" 
-                element={
-                    <ErrorBoundary>
-                        <Suspense fallback={<LoadingSpinner />}>
-                            <MoviesPage />
-                        </Suspense>
-                    </ErrorBoundary>
-                } 
-            />
-            
-            {/* Dynamic route for movie details */}
-            <Route 
-                path="movie/:id" 
-                element={
-                    <ErrorBoundary>
-                        <Suspense fallback={<LoadingSpinner />}>
-                            <MovieDetailsPage />
-                        </Suspense>
-                    </ErrorBoundary>
-                } 
-            />
-            
-            {/* TV Shows routes */}
-            <Route 
-                path="tv" 
-                element={
-                    <ErrorBoundary>
-                        <Suspense fallback={<LoadingSpinner />}>
-                            <TVShowsPage />
-                        </Suspense>
-                    </ErrorBoundary>
-                }  
-            />
-
-            {/* Dynamic route for tv shows details */}
-            <Route 
-                path="tv/:id" 
-                element={
+            <Route index element={
+                <ErrorBoundary>
                     <Suspense fallback={<LoadingSpinner />}>
-                        <TVDetailsPage />
+                        <HomePage />
                     </Suspense>
-                } 
-            />
+                </ErrorBoundary>
+            } />
             
-            {/* Search route with query params */}
-            <Route 
-                path="search" 
-                element={
+            {/* Movie Categories - paths match TMDB endpoints */}
+            <Route path="movie/">
+                <Route path="popular" element={
                     <ErrorBoundary>
                         <Suspense fallback={<LoadingSpinner />}>
-                            <SearchPage />
+                            <CategoryPage />
                         </Suspense>
                     </ErrorBoundary>
-                } 
-            />
+                } />
+                <Route path="now_playing" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+                <Route path="upcoming" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+                <Route path="top_rated" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+            </Route>
             
-            {/* Protected watchlist route */}
-            <Route 
-                path="watchlist" 
-                element={
-                    <ProtectedRoute>
-                        <ErrorBoundary>
-                            <Suspense fallback={<LoadingSpinner />}>
-                                <WatchlistPage />
-                            </Suspense>
-                        </ErrorBoundary>
-                    </ProtectedRoute>
-                } 
-            />
-
-             {/* Login route */}
-            <Route 
-                path="login" 
-                element={
+            
+            {/* TV Categories - paths match TMDB endpoints */}
+            <Route path="tv/">
+                <Route path="popular" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+                <Route path="airing_today" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+                <Route path="on_the_air" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+                <Route path="top_rated" element={
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <CategoryPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                } />
+            </Route>
+            
+            {/* Details pages */}
+            <Route path="movie/:id" element={
+                <ErrorBoundary>
                     <Suspense fallback={<LoadingSpinner />}>
-                        <LoginPage />
+                        <MovieDetailsPage />
                     </Suspense>
-                } 
-            />
+                </ErrorBoundary>
+            } />
+            
+            <Route path="tv/:id" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                    <TVDetailsPage />
+                </Suspense>
+            } />
+            
+            {/* Other routes */}
+            <Route path="search" element={
+                <ErrorBoundary>
+                    <Suspense fallback={<LoadingSpinner />}>
+                        <SearchPage />
+                    </Suspense>
+                </ErrorBoundary>
+            } />
+            
+            <Route path="watchlist" element={
+                <ProtectedRoute>
+                    <ErrorBoundary>
+                        <Suspense fallback={<LoadingSpinner />}>
+                            <WatchlistPage />
+                        </Suspense>
+                    </ErrorBoundary>
+                </ProtectedRoute>
+            } />
 
+            <Route path="login" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                    <LoginPage />
+                </Suspense>
+            } />
         </Route>
     )
 );
