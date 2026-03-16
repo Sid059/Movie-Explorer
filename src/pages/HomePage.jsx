@@ -2,6 +2,7 @@ import { useState } from 'react';
 import useFetch from '../hooks/useFetch';
 import MediaRow from '../components/media/MediaRow/MediaRow';
 import Toggle from '../components/common/Toggle/Toggle';
+import SearchBar from '../components/search/SearchBar/SearchBar';
 import { useAppContext } from '../context/AppContext';
 
 const TOGGLE_OPTIONS = [
@@ -32,13 +33,23 @@ export default function Home() {
     return (
         <div className="pt-20 pb-8">
             {/* Hero Section */}
-            <div className="h-[60vh] bg-gradient-to-r from-netflix-red to-netflix-dark-red mb-8 flex items-center justify-center">
-                <h1 className="text-white text-5xl font-netflix-bold">MovieFlix</h1>
+            <div className="bg-gradient-to-r from-netflix-red to-netflix-dark-red mb-8 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24">
+                    <h1 className="text-white text-4xl sm:text-5xl lg:text-6xl font-netflix-medium mb-3">
+                        Welcome.
+                    </h1>
+                    <p className="text-white/90 text-lg sm:text-xl lg:text-2xl mb-8 max-w-3xl">
+                        Millions of movies & TV shows to discover. Explore now.
+                    </p>
+                    <SearchBar />
+                </div>
             </div>
 
             {/* Trending Row */}
             <div className="mb-8">
-                <h2 className="text-white text-3xl font-netflix-medium mb-4 px-4">Trending This Week</h2>
+                <h2 className="text-white text-2xl sm:text-3xl font-netflix-medium mb-4 px-4">
+                    Trending This Week
+                </h2>
                 <MediaRow 
                     items={trending?.results || []}
                     mediaType="movie"
@@ -48,15 +59,19 @@ export default function Home() {
                 />
             </div>
 
-            {/* Popular Section */}
+            {/* Popular Section - Responsive header */}
             <div className="mb-8">
-                <div className="flex items-center justify-between mb-4 px-4">
-                    <h2 className="text-white text-3xl font-netflix-medium">What's Popular</h2>
-                    <Toggle 
-                        options={TOGGLE_OPTIONS}
-                        active={popularType}
-                        onChange={setPopularType}
-                    />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 px-4">
+                    <h2 className="text-white text-2xl sm:text-3xl font-netflix-medium">
+                        What's Popular
+                    </h2>
+                    <div className="flex justify-start sm:justify-end">
+                        <Toggle 
+                            options={TOGGLE_OPTIONS}
+                            active={popularType}
+                            onChange={setPopularType}
+                        />
+                    </div>
                 </div>
                 <MediaRow 
                     items={popular?.results || []}
@@ -67,15 +82,19 @@ export default function Home() {
                 />
             </div>
 
-            {/* Free to Watch Section */}
+            {/* Free to Watch Section - Responsive header */}
             <div className="mb-8">
-                <div className="flex items-center justify-between mb-4 px-4">
-                    <h2 className="text-white text-3xl font-netflix-medium">Free to Watch</h2>
-                    <Toggle 
-                        options={TOGGLE_OPTIONS}
-                        active={freeType}
-                        onChange={setFreeType}
-                    />
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4 px-4">
+                    <h2 className="text-white text-2xl sm:text-3xl font-netflix-medium">
+                        Free to Watch
+                    </h2>
+                    <div className="flex justify-start sm:justify-end">
+                        <Toggle 
+                            options={TOGGLE_OPTIONS}
+                            active={freeType}
+                            onChange={setFreeType}
+                        />
+                    </div>
                 </div>
                 <MediaRow 
                     items={freeToWatch?.results || []}

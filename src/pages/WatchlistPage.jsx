@@ -8,7 +8,7 @@ export default function WatchlistPage() {
         isAuthenticated, 
         movieWatchlist, 
         tvWatchlist, 
-        isInMovieWatchlist,  // Get the functions
+        isInMovieWatchlist,
         isInTVWatchlist,
         toggleMovieWatchlist, 
         toggleTVWatchlist 
@@ -18,15 +18,15 @@ export default function WatchlistPage() {
 
     return (
         <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl font-netflix-bold px-4 mb-6">
+            <h1 className="text-white text-3xl sm:text-4xl font-netflix-medium px-4 mb-6">
                 My Watchlist
             </h1>
 
-            {/* Category Tabs */}
-            <div className="flex gap-4 px-4 mb-6 border-b border-netflix-gray">
+            {/* Category Tabs - Responsive */}
+            <div className="flex gap-4 px-4 mb-6 border-b border-netflix-gray overflow-x-auto">
                 <button
                     onClick={() => setActiveTab('movies')}
-                    className={`pb-2 px-4 font-netflix-medium transition-colors ${
+                    className={`pb-2 px-4 font-netflix-medium text-sm sm:text-base whitespace-nowrap transition-colors ${
                         activeTab === 'movies'
                             ? 'text-netflix-red'
                             : 'text-netflix-gray hover:text-white'
@@ -36,7 +36,7 @@ export default function WatchlistPage() {
                 </button>
                 <button
                     onClick={() => setActiveTab('tv')}
-                    className={`pb-2 px-4 font-netflix-medium transition-colors ${
+                    className={`pb-2 px-4 font-netflix-medium text-sm sm:text-base whitespace-nowrap transition-colors ${
                         activeTab === 'tv'
                             ? 'text-netflix-red'
                             : 'text-netflix-gray hover:text-white'
@@ -63,7 +63,7 @@ export default function WatchlistPage() {
                             mediaType="movie"
                             isLoading={false}
                             isAuthenticated={isAuthenticated}
-                            isInWatchlist={isInMovieWatchlist}  // Pass function
+                            isInWatchlist={isInMovieWatchlist}
                             onWatchlistToggle={toggleMovieWatchlist}
                         />
                     )}
@@ -87,7 +87,7 @@ export default function WatchlistPage() {
                             mediaType="tv"
                             isLoading={false}
                             isAuthenticated={isAuthenticated}
-                            isInWatchlist={isInTVWatchlist}  // Pass function
+                            isInWatchlist={isInTVWatchlist}
                             onWatchlistToggle={toggleTVWatchlist}
                         />
                     )}

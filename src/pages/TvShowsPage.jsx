@@ -19,7 +19,7 @@ export default function TVShowsPage() {
     
     return (
         <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl font-netflix-medium px-4 mb-6">
+            <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-netflix-medium px-4 mb-6">
                 Popular TV Shows
             </h1>
             

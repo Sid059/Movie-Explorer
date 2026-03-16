@@ -21,7 +21,7 @@ export default function MoviesPage() {
     
     return (
         <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl font-netflix-medium px-4 mb-6">
+            <h1 className="text-white text-2xl sm:text-3xl lg:text-4xl font-netflix-medium px-4 mb-6">
                 Popular Movies
             </h1>
             
@@ -31,7 +31,7 @@ export default function MoviesPage() {
                 isLoading={loading}
                 error={error?.message}
                 isAuthenticated={isAuthenticated}
-                isInWatchlist={isInMovieWatchlist}  // Pass function, not array
+                isInWatchlist={isInMovieWatchlist}
                 onWatchlistToggle={toggleMovieWatchlist}
             />
             
