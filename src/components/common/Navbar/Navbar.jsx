@@ -28,14 +28,14 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                         TV Shows
                     </NavLink>
                     
-                    <NavLink 
+                    {/* <NavLink 
                         to="/search" 
                         className={({ isActive }) => 
                             `nav-link ${isActive ? 'nav-link-active' : ''}`
                         }
                     >
                         Search
-                    </NavLink>
+                    </NavLink> */}
                     
                     <NavLink 
                         to="/watchlist" 
@@ -82,7 +82,7 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                     <div className="flex flex-col space-y-2">
                         <NavLink to="/movies" className="mobile-nav-link" onClick={toggleMobileMenu}>Movies</NavLink>
                         <NavLink to="/tv" className="mobile-nav-link" onClick={toggleMobileMenu}>TV Shows</NavLink>
-                        <NavLink to="/search" className="mobile-nav-link" onClick={toggleMobileMenu}>Search</NavLink>
+                        {/* <NavLink to="/search" className="mobile-nav-link" onClick={toggleMobileMenu}>Search</NavLink> */}
                         <NavLink to="/watchlist" className="mobile-nav-link" onClick={toggleMobileMenu}>Watchlist</NavLink>
                     </div>
                 </div>

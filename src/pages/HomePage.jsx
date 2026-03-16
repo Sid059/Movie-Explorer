@@ -10,7 +10,7 @@ const TOGGLE_OPTIONS = [
     { value: 'tv', label: 'TV Shows' }
 ];
 
-export default function Home() {
+export default function HomePage() {
     const { 
         isAuthenticated, 
         isInMovieWatchlist, 

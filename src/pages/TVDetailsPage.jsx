@@ -5,7 +5,7 @@ import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary'
 import EmptyState from '../components/common/EmptyState/EmptyState';
 
-export default function TVDetailsContainer() {
+export default function TVDetailsPage() {
     const { id } = useParams();
 
     const { 

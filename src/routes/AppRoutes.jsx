@@ -11,7 +11,7 @@ const MoviesPage = lazy(() => import('../pages/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('../pages/MovieDetailsPage'));
 const TVShowsPage = lazy(() => import('../pages/TvShowsPage'));
 const TVDetailsPage = lazy(() => import('../pages/TVDetailsPage'));
-const SearchPage = lazy(() => import('../pages/SearchResults'));
+const SearchPage = lazy(() => import('../pages/SearchResultsPage'));
 const WatchlistPage = lazy(() => import('../pages/WatchlistPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginContainer'));
 
