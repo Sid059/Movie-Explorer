@@ -31,7 +31,7 @@ export default function HomePage() {
     const { data: freeToWatch } = useFetch(freeEndpoint);
 
     return (
-        <div className="pt-20 pb-8">
+        <div className="pt-16 pb-8">
             {/* Hero Section */}
             <div className="bg-gradient-to-r from-netflix-red to-netflix-dark-red mb-8 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-7xl mx-auto py-16 sm:py-20 lg:py-24">

@@ -17,8 +17,8 @@ export default function WatchlistPage() {
     const [activeTab, setActiveTab] = useState('movies');
 
     return (
-        <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl sm:text-4xl font-netflix-medium px-4 mb-6">
+        <div className="pt-16 pb-8">
+            <h1 className="text-white text-2xl sm:text-3xl font-netflix-medium px-4 mb-6">
                 My Watchlist
             </h1>
 
