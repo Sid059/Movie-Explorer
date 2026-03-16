@@ -6,12 +6,10 @@ import { useAppContext } from '../context/AppContext';
 
 export default function MoviesPage() {
     const [currentPage, setCurrentPage] = useState(1);
-    const { isAuthenticated, movieWatchlist, toggleMovieWatchlist } = useAppContext();
+    const { isAuthenticated, isInMovieWatchlist, toggleMovieWatchlist } = useAppContext();
     
-    // Add page parameter to endpoint
     const { data, loading, error } = useFetch(`/movie/popular?page=${currentPage}`);
     
-    const watchlistIds = movieWatchlist.map(m => m.id); //to check if its in the watchlist
     const totalPages = data?.total_pages || 1;
     
     const handlePageChange = (newPage) => {
@@ -23,7 +21,7 @@ export default function MoviesPage() {
     
     return (
         <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl font-netflix-bold px-4 mb-6">
+            <h1 className="text-white text-3xl font-netflix-medium px-4 mb-6">
                 Popular Movies
             </h1>
             
@@ -33,7 +31,7 @@ export default function MoviesPage() {
                 isLoading={loading}
                 error={error?.message}
                 isAuthenticated={isAuthenticated}
-                watchlistIds={watchlistIds}
+                isInWatchlist={isInMovieWatchlist}  // Pass function, not array
                 onWatchlistToggle={toggleMovieWatchlist}
             />
             

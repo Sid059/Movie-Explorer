@@ -4,11 +4,17 @@ import MediaGrid from '../components/media/MediaGrid/MediaGrid';
 import EmptyState from '../components/common/EmptyState/EmptyState';
 
 export default function WatchlistPage() {
-    const { isAuthenticated, movieWatchlist, tvWatchlist, toggleMovieWatchlist, toggleTVWatchlist } = useAppContext();
+    const { 
+        isAuthenticated, 
+        movieWatchlist, 
+        tvWatchlist, 
+        isInMovieWatchlist,  // Get the functions
+        isInTVWatchlist,
+        toggleMovieWatchlist, 
+        toggleTVWatchlist 
+    } = useAppContext();
+    
     const [activeTab, setActiveTab] = useState('movies');
-
-    const movieIds = movieWatchlist.map(m => m.id);
-    const tvIds = tvWatchlist.map(t => t.id);
 
     return (
         <div className="pt-20 pb-8">
@@ -57,7 +63,7 @@ export default function WatchlistPage() {
                             mediaType="movie"
                             isLoading={false}
                             isAuthenticated={isAuthenticated}
-                            watchlistIds={movieIds}
+                            isInWatchlist={isInMovieWatchlist}  // Pass function
                             onWatchlistToggle={toggleMovieWatchlist}
                         />
                     )}
@@ -81,7 +87,7 @@ export default function WatchlistPage() {
                             mediaType="tv"
                             isLoading={false}
                             isAuthenticated={isAuthenticated}
-                            watchlistIds={tvIds}
+                            isInWatchlist={isInTVWatchlist}  // Pass function
                             onWatchlistToggle={toggleTVWatchlist}
                         />
                     )}

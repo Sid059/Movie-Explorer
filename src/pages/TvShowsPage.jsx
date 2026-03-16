@@ -6,22 +6,20 @@ import { useAppContext } from '../context/AppContext';
 
 export default function TVShowsPage() {
     const [currentPage, setCurrentPage] = useState(1);
-    const { isAuthenticated, tvWatchlist, toggleTVWatchlist } = useAppContext();
+    const { isAuthenticated, isInTVWatchlist, toggleTVWatchlist } = useAppContext();
     
-    // Add page parameter to endpoint
     const { data, loading, error } = useFetch(`/tv/popular?page=${currentPage}`);
     
-    const watchlistIds = tvWatchlist.map(show => show.id);
     const totalPages = data?.total_pages || 1;
     
     const handlePageChange = (newPage) => {
         setCurrentPage(newPage);
-        window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to top
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
     
     return (
         <div className="pt-20 pb-8">
-            <h1 className="text-white text-3xl font-netflix-bold px-4 mb-6">
+            <h1 className="text-white text-3xl font-netflix-medium px-4 mb-6">
                 Popular TV Shows
             </h1>
             
@@ -31,7 +29,7 @@ export default function TVShowsPage() {
                 isLoading={loading}
                 error={error?.message}
                 isAuthenticated={isAuthenticated}
-                watchlistIds={watchlistIds}
+                isInWatchlist={isInTVWatchlist}  // Pass function, not array
                 onWatchlistToggle={toggleTVWatchlist}
             />
             

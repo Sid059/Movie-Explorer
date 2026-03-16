@@ -3,17 +3,16 @@ import LoadingSpinner from '../../common/LoadingSpinner/LoadingSpinner';
 import EmptyState from '../../common/EmptyState/EmptyState';
 
 export default function MediaGrid({
-    items = [],              // Array of movies or TV shows
-    mediaType = 'movie',      // 'movie' or 'tv'
+    items = [],
+    mediaType = 'movie',
     isLoading = false,
     error = null,
     onRetry,
     isAuthenticated = false,
-    watchlistIds = [],
+    isInWatchlist, 
     onWatchlistToggle
 }) {
     
-    // Loading state
     if (isLoading) {
         return (
             <div className="w-full py-12">
@@ -22,7 +21,6 @@ export default function MediaGrid({
         );
     }
     
-    // Error state
     if (error) {
         return (
             <div className="w-full py-12">
@@ -37,7 +35,6 @@ export default function MediaGrid({
         );
     }
     
-    // Empty state
     if (!isLoading && !error && items.length === 0) {
         return (
             <div className="w-full py-12">
@@ -50,7 +47,6 @@ export default function MediaGrid({
         );
     }
     
-    // Grid rendering
     return (
         <div className="px-4">
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
@@ -60,7 +56,7 @@ export default function MediaGrid({
                             item={item}
                             mediaType={mediaType}
                             isAuthenticated={isAuthenticated}
-                            isInWatchlist={watchlistIds.includes(item.id)}
+                            isInWatchlist={isInWatchlist(item.id)}
                             onWatchlistToggle={onWatchlistToggle}
                         />
                     </div>
