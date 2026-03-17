@@ -1,6 +1,7 @@
 import MediaCard from '../MediaCard/MediaCard';
+import React from 'react';
 
-export default function MediaRow({ 
+function MediaRow({ 
     items = [],
     mediaType = 'movie',
     isAuthenticated = false,
@@ -25,3 +26,5 @@ export default function MediaRow({
         </div>
     );
 }
+
+export default React.memo(MediaRow);

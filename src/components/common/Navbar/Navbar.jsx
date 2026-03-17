@@ -28,7 +28,7 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
         <nav className="bg-[#000000] border-b border-netflix-gray px-4 py-3 relative z-50" ref={dropdownRef}> 
             <div className="flex items-center justify-between max-w-7xl mx-auto">
                 <NavLink to="/" className="text-netflix-red font-netflix-medium text-2xl sm:text-3xl lg:text-4xl tracking-wider">
-                    MOVIE<span className="text-white">FLIX</span>
+                    CINE<span className="text-white">VERSE</span>
                 </NavLink>
 
                 <div className="hidden md:flex items-center space-x-6">
@@ -163,7 +163,13 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                                         <NavLink
                                             key={option.path}
                                             to={option.path}
-                                            className="mobile-nav-link block"
+                                            className={({ isActive }) =>
+                                                `block py-2 px-2 text-sm transition-colors ${
+                                                    isActive 
+                                                        ? 'text-netflix-red' 
+                                                        : 'text-netflix-gray hover:text-white hover:bg-netflix-red/80'
+                                                }`
+                                            }
                                             onClick={toggleMobileMenu}
                                         >
                                             {option.label}
@@ -191,7 +197,13 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                                         <NavLink
                                             key={option.path}
                                             to={option.path}
-                                            className="mobile-nav-link block"
+                                            className={({ isActive }) =>
+                                                `block py-2 px-2 text-sm transition-colors ${
+                                                    isActive 
+                                                        ? 'text-netflix-red' 
+                                                        : 'text-netflix-gray hover:text-white hover:bg-netflix-red/80'
+                                                }`
+                                            }
                                             onClick={toggleMobileMenu}
                                         >
                                             {option.label}

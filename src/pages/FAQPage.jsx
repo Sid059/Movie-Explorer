@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { faqs } from '../utils/faqs';
+import { faqs } from '../data/faqs';
 
 export default function FAQ() {
     const [openIndex, setOpenIndex] = useState(null);
@@ -19,7 +19,7 @@ export default function FAQ() {
                 </h1>
                 
                 <p className="text-netflix-gray text-lg mb-8">
-                    Find answers to common questions about MovieFlix. Can't find what you're looking for? 
+                    Find answers to common questions about CINEVERSE. Can't find what you're looking for? 
                     Feel free to <Link to="/contact" className="text-netflix-red hover:underline">contact us</Link>.
                 </p>
 

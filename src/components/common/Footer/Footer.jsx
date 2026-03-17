@@ -12,7 +12,7 @@ export default function Footer() {
                     {/* Column 1 - Brand */}
                     <div className="space-y-4">
                         <h3 className='text-netflix-red font-netflix-bold text-lg mb-4 tracking-wider'>
-                            MOVIE<span className="text-white">FLIX</span>
+                            CINE<span className="text-white">VERSE</span>
                         </h3>
                         <p className="text-[#B3B3B3] text-sm leading-relaxed">
                             Your ultimate movie and TV show explorer. Discover, track, and enjoy your favorite content.
@@ -114,7 +114,7 @@ export default function Footer() {
                 {/* Bottom bar with copyright */}
                 <div className="border-t border-[#333333] mt-10 pt-8 text-center">
                     <p className="text-[#B3B3B3] text-sm">
-                        &copy; {currentYear} MOVIEFLIX. All rights reserved.
+                        &copy; {currentYear} CINEVERSE. All rights reserved.
                     </p>
                     <p className="text-[#808080] text-xs mt-3">
                         This is a demo project for educational purposes.

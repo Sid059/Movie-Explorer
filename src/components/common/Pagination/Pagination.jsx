@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesLeft, faAnglesRight } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
 
-export default function Pagination({ currentPage, totalPages, onPageChange }) {
+function Pagination({ currentPage, totalPages, onPageChange }) {
 
     if (totalPages <= 1) return null;
     
@@ -84,3 +85,5 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
         </div>
     );
 }
+
+export default React.memo(Pagination);

@@ -24,9 +24,18 @@ export default function TVDetails({ show }) {
         overview,
         credits = { cast: [] },
         reviews = { results: [] },
-        similar = { results: [] }
+        similar = { results: [] },
+        videos = { results: [] }
     } = show;
     
+    // Find the first YouTube trailer
+    const trailer = videos.results?.find(
+        video => video.site === 'YouTube' && video.type === 'Trailer'
+    );
+
+    // Get YouTube video ID (key)
+    const trailerKey = trailer?.key || null;
+
     const { isAuthenticated, toggleTVWatchlist, isInTVWatchlist } = useAppContext();
 
     // Format seasons/episodes info
@@ -47,7 +56,7 @@ export default function TVDetails({ show }) {
                 rating={vote_average}
                 releaseYear={releaseYear}
                 runtime={seasonsInfo}  // Passing seasons info instead of runtime
-                mediaType="tv"
+                trailerKey={trailerKey}
                 isInWatchlist={isInTVWatchlist(show?.id)}  // From context
                 onWatchlistToggle={() => toggleTVWatchlist(show)}
                 isAuthenticated={isAuthenticated}

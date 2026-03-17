@@ -1,4 +1,6 @@
-export default function Toggle({ options, active, onChange }) {
+import React from "react";
+
+function Toggle({ options, active, onChange }) {
     return (
         <div className="flex gap-2 bg-[#222] p-1 rounded-full">
             {options.map(option => (
@@ -17,3 +19,5 @@ export default function Toggle({ options, active, onChange }) {
         </div>
     );
 }
+
+export default React.memo(Toggle);

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import MovieDetails from '../components/media/MovieDetailsContainer/MovieDetails';
-import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary'
 import EmptyState from '../components/common/EmptyState/EmptyState';
 import '../components/media/MovieDetailsContainer/MovieDetails.css';
@@ -14,15 +13,11 @@ export default function MovieDetailsPage() {
         data: movie, 
         loading: movieLoading, 
         error: movieError 
-    } = useFetch(`/movie/${id}?append_to_response=credits,reviews,similar`);
+    } = useFetch(`/movie/${id}?append_to_response=credits,reviews,similar,videos`);
 
     
     if (movieLoading) {
-        return (
-            <div className="fullscreen-center">
-                <LoadingSpinner />
-            </div>
-        );
+        return null;
     }
     
     if (movieError || !movie) {

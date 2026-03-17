@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faBookmark as fasBookmark } from '@fortawesome/free-solid-svg-icons';
 import { faBookmark as farBookmark } from '@fortawesome/free-regular-svg-icons';
+import React from 'react';
 
-export default function MediaCard({ 
+function MediaCard({ 
     item,                    // Can be movie or TV show
     mediaType = 'movie',      // 'movie' or 'tv'
     isAuthenticated, 
@@ -114,3 +115,5 @@ export default function MediaCard({
         </div>
     );
 }
+
+export default React.memo(MediaCard);

@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import TVDetails from '../components/media/TVDetailsContainer/TVDetails';
-import LoadingSpinner from '../components/common/LoadingSpinner/LoadingSpinner';
 import ErrorBoundary from '../components/common/ErrorBoundary/ErrorBoundary'
 import EmptyState from '../components/common/EmptyState/EmptyState';
 
@@ -12,16 +11,12 @@ export default function TVDetailsPage() {
         data: show, 
         loading: showLoading, 
         error: showError 
-    } = useFetch(`/tv/${id}?append_to_response=credits,reviews,similar`);
+    } = useFetch(`/tv/${id}?append_to_response=credits,reviews,similar,videos`);
 
     // console.log('TV Show details:', show);
     
     if (showLoading) {
-        return (
-            <div className="fullscreen-center">
-                <LoadingSpinner />
-            </div>
-        );
+        return null;
     }
     
     if (showError || !show) {

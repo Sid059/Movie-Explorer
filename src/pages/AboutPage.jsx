@@ -5,12 +5,12 @@ export default function About() {
         <div className="pt-16 pb-8 min-h-screen">
             <div className="max-w-4xl mx-auto px-4">
                 <h1 className="text-white text-2xl sm:text-3xl font-netflix-medium mb-4 px-4">
-                    About MovieFlix
+                    About CINEVERSE
                 </h1>
                 
                 <div className="bg-[#111] rounded-lg p-8 mb-8">
                     <p className="text-netflix-gray text-lg leading-relaxed mb-6">
-                        Welcome to MovieFlix, your ultimate destination for discovering movies and TV shows. 
+                        Welcome to CINEVERSE, your ultimate destination for discovering movies and TV shows. 
                         We're passionate about bringing the world of entertainment to your fingertips.
                     </p>
                     

@@ -22,8 +22,18 @@ export default function MovieDetails({ movie }) {
         overview,
         credits = { cast: [] },
         reviews = { results: [] },
-        similar = { results: [] }
+        similar = { results: [] },
+        videos = { results: [] }
     } = movie;
+
+    // Find the first YouTube trailer
+    const trailer = videos.results?.find(
+        video => video.site === 'YouTube' && video.type === 'Trailer'
+    );
+
+    // Get just the YouTube video ID (key)
+    const trailerKey = trailer?.key || null;
+
 
     const { isAuthenticated, toggleMovieWatchlist, isInMovieWatchlist } = useAppContext();
     
@@ -49,8 +59,8 @@ export default function MovieDetails({ movie }) {
                 rating={vote_average}
                 releaseYear={releaseYear}
                 runtime={formattedRuntime}
-                mediaType="movie"
-                isInWatchlist={isInMovieWatchlist(movie?.id)}  // You'll need this from context
+                trailerKey={trailerKey} 
+                isInWatchlist={isInMovieWatchlist(movie?.id)}  
                 onWatchlistToggle={() => toggleMovieWatchlist(movie)}
                 isAuthenticated={isAuthenticated}
             />

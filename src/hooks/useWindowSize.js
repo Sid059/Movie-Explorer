@@ -1,3 +1,4 @@
+//didnt use this
 import { useState, useEffect } from 'react';
 
 export default function useWindowSize() {

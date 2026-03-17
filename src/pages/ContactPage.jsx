@@ -52,8 +52,8 @@ export default function Contact() {
                                     </div>
                                     <div>
                                         <h3 className="text-white font-netflix-medium mb-1">Email</h3>
-                                        <p className="text-netflix-gray">support@movieflix.com</p>
-                                        <p className="text-netflix-gray">info@movieflix.com</p>
+                                        <p className="text-netflix-gray">support@cineverse.com</p>
+                                        <p className="text-netflix-gray">info@cineverse.com</p>
                                     </div>
                                 </div>
                                 
