@@ -32,7 +32,7 @@ export default function TVDetailsPage() {
                     message={showError || "TV show not found"}
                     icon="/images/icons/error.png"
                     actionText="Go Back"
-                    actionLink="/tv"
+                    actionLink="/tv/popular"
                 />
             </div>
         );

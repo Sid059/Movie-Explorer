@@ -33,7 +33,7 @@ export default function MovieDetailsPage() {
                     message={movieError || "Movie not found"}
                     icon="/images/icons/error.png"
                     actionText="Go Back"
-                    actionLink="/movies"
+                    actionLink="/movie/popular"
                 />
             </div>
         );

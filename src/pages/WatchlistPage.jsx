@@ -55,7 +55,7 @@ export default function WatchlistPage() {
                             message="Start adding movies to keep track of what you want to watch"
                             icon="/images/icons/empty-folder.png"
                             actionText="Browse Movies"
-                            actionLink="/movies"
+                            actionLink="/movie/popular"
                         />
                     ) : (
                         <MediaGrid 

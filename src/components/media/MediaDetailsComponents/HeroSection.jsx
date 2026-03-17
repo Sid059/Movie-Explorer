@@ -11,11 +11,19 @@ export default function HeroSection({
     rating, 
     releaseYear, 
     runtime,
-    mediaType,           
+    mediaType,          
     isInWatchlist,       
     onWatchlistToggle,
     isAuthenticated    
 }) {
+
+    const handlePlayTrailer = () => {
+        if (trailerUrl) {
+            window.open(trailerUrl, '_blank');  // Opens in new tab
+        }
+    };
+
+
     const [backdropError, setBackdropError] = useState(false);
     const [posterError, setPosterError] = useState(false);
 
@@ -97,7 +105,8 @@ export default function HeroSection({
                             </div>
                             
                             <div className="flex gap-3 sm:gap-4 justify-center lg:justify-start px-2">  {/* Added px-2 */}
-                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base flex items-center gap-2">
+                                <button className="bg-netflix-red hover:bg-netflix-dark-red text-white px-6 sm:px-8 py-2 sm:py-3 rounded-md font-netflix-medium transition-colors text-sm sm:text-base flex items-center gap-2"
+                                >
                                     <FontAwesomeIcon icon={faPlay} className="text-xs sm:text-sm" /> 
                                     Play Trailer
                                 </button>

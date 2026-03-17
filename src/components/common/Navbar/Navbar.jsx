@@ -7,23 +7,22 @@ import './Navbar.css';
 
 export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutClick, isMobileMenuOpen, toggleMobileMenu }){
     const [openDropdown, setOpenDropdown] = useState(null);
-    const dropdownRef = useRef(null);
+    const dropdownRef = useRef(null); //use to detect clicks outside navbar
 
     // Close dropdown when clicking outside
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        const handleClickOutside = ({ target }) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(target)) {
                 setOpenDropdown(null);
             }
         };
 
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', handleClickOutside); //Adds an event listener to the whole page for mouse clicks.
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-    const toggleDropdown = (dropdown) => {
-        setOpenDropdown(openDropdown === dropdown ? null : dropdown);
-    };
+    const toggleDropdown = dropdown => setOpenDropdown(prev => (prev === dropdown ? null : dropdown));
+
 
     return (
         <nav className="bg-[#000000] border-b border-netflix-gray px-4 py-3 relative z-50" ref={dropdownRef}> 
@@ -55,8 +54,8 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                                         className={({ isActive }) =>
                                             `block px-4 py-2 text-sm transition-colors ${
                                                 isActive 
-                                                    ? 'text-netflix-red bg-netflix-red/10' 
-                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/10'
+                                                    ? 'text-netflix-red' 
+                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/80'
                                             }`
                                         }
                                         onClick={() => setOpenDropdown(null)}
@@ -90,8 +89,8 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
                                         className={({ isActive }) =>
                                             `block px-4 py-2 text-sm transition-colors ${
                                                 isActive 
-                                                    ? 'text-netflix-red bg-netflix-red/10' 
-                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/10'
+                                                    ? 'text-netflix-red' 
+                                                    : 'text-netflix-gray hover:text-white hover:bg-netflix-red/80'
                                             }`
                                         }
                                         onClick={() => setOpenDropdown(null)}

@@ -1,4 +1,4 @@
-import { useState, useMemo, useContext } from 'react';
+import { useState, useMemo } from 'react';
 import HeroSection from '../MediaDetailsComponents/HeroSection';
 import MediaInfo from '../MediaDetailsComponents/MediaInfo';
 import CastList from '../MediaDetailsComponents/CastList';
