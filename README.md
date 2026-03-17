@@ -105,7 +105,7 @@ npm run build
 ## Technologies
 
 ### Frontend Framework
-- **React 18** - UI library for building component-based interfaces
+- **React 19** - UI library for building component-based interfaces
 - **Vite** - Next-generation frontend build tool for faster development
 
 ### Routing & Navigation
