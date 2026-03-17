@@ -14,6 +14,10 @@ const WatchlistPage = lazy(() => import('../pages/WatchlistPage'));
 const LoginPage = lazy(() => import('../pages/Login/LoginContainer'));
 const CategoryPage = lazy(() => import('../pages/CategoryPage'));
 
+const AboutPage = lazy(() => import('../pages/AboutPage'));
+const ContactPage = lazy(() => import('../pages/ContactPage'));
+const FAQPage = lazy(() => import('../pages/FAQPage'));
+
 const routes = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
@@ -129,6 +133,26 @@ const routes = createBrowserRouter(
                     <LoginPage />
                 </Suspense>
             } />
+
+
+            <Route path="about" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                    <AboutPage />
+                </Suspense>
+            } />
+
+            <Route path="contact" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                    <ContactPage />
+                </Suspense>
+            } />
+
+            <Route path="faq" element={
+                <Suspense fallback={<LoadingSpinner />}>
+                    <FAQPage />
+                </Suspense>
+            } />
+
         </Route>
     )
 );

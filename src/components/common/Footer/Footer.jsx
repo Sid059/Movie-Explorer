@@ -25,24 +25,27 @@ export default function Footer() {
                         <ul className="space-y-3">
                             <li>
                                 <NavLink 
-                                    to="/movies" 
+                                    to="/movie/popular" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     Movies
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink 
-                                    to="/tv" 
+                                    to="/tv/popular" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     TV Shows
                                 </NavLink>
                             </li>
                             <li>
                                 <NavLink 
-                                    to="/search" 
+                                    to="/" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     Search
                                 </NavLink>
@@ -58,6 +61,7 @@ export default function Footer() {
                                 <NavLink 
                                     to="/about" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     About Us
                                 </NavLink>
@@ -66,6 +70,7 @@ export default function Footer() {
                                 <NavLink 
                                     to="/contact" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     Contact
                                 </NavLink>
@@ -74,6 +79,7 @@ export default function Footer() {
                                 <NavLink 
                                     to="/faq" 
                                     className="nav-link"
+                                    onClick={() => {window.scrollTo({ top: 0, behavior: 'smooth' })}}
                                 >
                                     FAQ
                                 </NavLink>

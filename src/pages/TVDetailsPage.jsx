@@ -14,7 +14,7 @@ export default function TVDetailsPage() {
         error: showError 
     } = useFetch(`/tv/${id}?append_to_response=credits,reviews,similar`);
 
-    console.log('TV Show details:', show);
+    // console.log('TV Show details:', show);
     
     if (showLoading) {
         return (

@@ -28,7 +28,7 @@ export default function Navbar({ isAuthenticated, user, onLoginClick, onLogoutCl
     return (
         <nav className="bg-[#000000] border-b border-netflix-gray px-4 py-3 relative z-50" ref={dropdownRef}> 
             <div className="flex items-center justify-between max-w-7xl mx-auto">
-                <NavLink to="/" className="text-netflix-red font-netflix-bold text-logo tracking-wider">
+                <NavLink to="/" className="text-netflix-red font-netflix-medium text-2xl sm:text-3xl lg:text-4xl tracking-wider">
                     MOVIE<span className="text-white">FLIX</span>
                 </NavLink>
 

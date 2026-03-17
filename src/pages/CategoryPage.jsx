@@ -24,7 +24,7 @@ export default function CategoryPage() {
     if (!option) {
         return (
             <div className="pt-20 text-center">
-                <h1 className="text-white text-3xl mb-4">Category Not Found</h1>
+                <h1 className="text-white text-3xl font-netflix-medium mb-4">Category Not Found</h1>
             </div>
         );
     }
@@ -43,7 +43,7 @@ export default function CategoryPage() {
 
     return (
         <div className="pt-16 pb-8">
-            <h1 className="text-white text-3xl font-netflix-medium px-4 mb-6">
+            <h1 className="text-white text-2xl sm:text-3xl font-netflix-medium mb-4 px-4">
                 {title}
             </h1>
             
